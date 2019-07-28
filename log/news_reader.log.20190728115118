@@ -1,0 +1,524 @@
+2019-07-28 11:51:18 [tid:0xddfe700] [file:thread_pool_manager.c] [func:thread_manager_func] [line:13]			
+information: debug: thread manager begin to work.
+
+2019-07-28 11:51:18 [tid:0xddfe700] [file:thread_pool_manager.c] [func:thread_manager_func] [line:65]			
+information: debug: Manager thread tid:0xddfe700	pthread_pool info:			
+ALIVE:10	BUSY:0	 LIE:10	 B/A:0.00%	 A/ALL:1.00%
+
+
+2019-07-28 11:51:18 [tid:0xd5fd700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:51:18 [tid:0xd5fd700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:51:18 [tid:0xd5fd700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:51:18 [tid:0xd5fd700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:51:18 [tid:0xd5fd700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:51:18 [tid:0xd5fd700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Sun Jul 28 11:52:06 2019
+	client ip:222.171.151.228	accept All client num:1
+
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:main.c] [func:main] [line:63]			
+information:  debug: now the number of connecting is 1.
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Sun Jul 28 11:52:06 2019
+	client ip:222.171.151.228	accept All client num:2
+
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:main.c] [func:main] [line:63]			
+information:  debug: now the number of connecting is 2.
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Sun Jul 28 11:52:06 2019
+	client ip:222.171.151.228	accept All client num:3
+
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:main.c] [func:main] [line:63]			
+information:  debug: now the number of connecting is 3.
+
+2019-07-28 11:52:06 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:06 [tid:0xfe02700] [file:deal_news_request_operation.c] [func:push_client_current_news] [line:18]			
+information: debug: deal request of updating for client.
+
+2019-07-28 11:52:06 [tid:0xfe02700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 13416.
+
+2019-07-28 11:52:06 [tid:0xfe02700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 17896.
+
+2019-07-28 11:52:06 [tid:0xfe02700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 744.
+
+2019-07-28 11:52:07 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:07 [tid:0xf601700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:08 [tid:0xf601700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 67106
+
+2019-07-28 11:52:08 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:08 [tid:0x10603700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:08 [tid:0x10603700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 20237
+
+2019-07-28 11:52:08 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:08 [tid:0x10e04700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:08 [tid:0x10e04700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 129645
+
+2019-07-28 11:52:10 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:10 [tid:0x11605700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:10 [tid:0x11605700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 98608
+
+2019-07-28 11:52:10 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:10 [tid:0x11e06700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:10 [tid:0x11e06700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 142723
+
+2019-07-28 11:52:10 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:10 [tid:0xee00700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:10 [tid:0xee00700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 58429
+
+2019-07-28 11:52:11 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:11 [tid:0x12607700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:11 [tid:0x12607700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:52:11 [tid:0x12607700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:52:11 [tid:0x12607700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:52:11 [tid:0x12607700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:52:11 [tid:0x12607700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:52:12 [tid:0x12607700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:52:12 [tid:0x12607700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 79735
+
+2019-07-28 11:52:12 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:12 [tid:0x12e08700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:12 [tid:0x12e08700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 115601
+
+2019-07-28 11:52:12 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:52:12 [tid:0xe5ff700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 93479
+
+2019-07-28 11:52:14 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:14 [tid:0xfe02700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:14 [tid:0xfe02700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 18280
+
+2019-07-28 11:52:14 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:52:14 [tid:0xf601700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 155761
+
+2019-07-28 11:52:14 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:14 [tid:0x10603700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:14 [tid:0x10603700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 21836
+
+2019-07-28 11:52:21 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:21 [tid:0x10e04700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:21 [tid:0x10e04700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 40809
+
+2019-07-28 11:52:22 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:22 [tid:0x11605700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:22 [tid:0x11605700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 19553
+
+2019-07-28 11:52:22 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:52:22 [tid:0x11e06700] [file:deal_news_request_operation.c] [func:deal_picture_request] [line:73]			
+information: debug: update picture for client.
+
+2019-07-28 11:52:22 [tid:0x11e06700] [file:send_file_operation.c] [func:send_binary_file] [line:98]			
+information: debug: send binary file and file length is 32868
+
+2019-07-28 11:54:15 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:15 [tid:0xee00700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:15 [tid:0xee00700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 78.
+
+2019-07-28 11:54:20 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:20 [tid:0x12607700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1033.
+
+2019-07-28 11:54:27 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:27 [tid:0x12e08700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:27 [tid:0x12e08700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:27 [tid:0x12e08700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:27 [tid:0x12e08700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:27 [tid:0x12e08700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:28 [tid:0x12e08700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:28 [tid:0x12e08700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1031.
+
+2019-07-28 11:54:29 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:29 [tid:0xe5ff700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:29 [tid:0xe5ff700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:30 [tid:0xe5ff700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:30 [tid:0xe5ff700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:30 [tid:0xe5ff700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:30 [tid:0xe5ff700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:30 [tid:0xe5ff700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1034.
+
+2019-07-28 11:54:32 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:32 [tid:0xfe02700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:32 [tid:0xfe02700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 78.
+
+2019-07-28 11:54:35 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:35 [tid:0xf601700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 62.
+
+2019-07-28 11:54:36 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:36 [tid:0x10603700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 96.
+
+2019-07-28 11:54:41 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:41 [tid:0x10e04700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1017.
+
+2019-07-28 11:54:42 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:42 [tid:0x11605700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:42 [tid:0x11605700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1017.
+
+2019-07-28 11:54:49 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:49 [tid:0x11e06700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1025.
+
+2019-07-28 11:54:50 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:50 [tid:0xee00700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:50 [tid:0xee00700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1031.
+
+2019-07-28 11:54:52 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:52 [tid:0x12607700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:52 [tid:0x12607700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1034.
+
+2019-07-28 11:54:53 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:spider_operation.c] [func:create_connect_socket] [line:94]			
+information: debug: [2]create connetion socket success.
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:spider_operation.c] [func:connect_web_server] [line:109]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:spider_operation.c] [func:create_request_head] [line:128]			
+information: debug: [4]create request head success.
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:spider_operation.c] [func:send_request_head] [line:150]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:spider_operation.c] [func:get_web_response] [line:243]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-28 11:54:53 [tid:0x12e08700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1023.
+
+2019-07-28 11:54:54 [tid:0x13ebb700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-28 11:54:54 [tid:0xe5ff700] [file:spider_operation.c] [func:analyze_url] [line:79]			
+information: debug:[1] analize url success.
+
+2019-07-28 11:54:54 [tid:0xe5ff700] [file:send_file_operation.c] [func:send_text_file] [line:44]			
+information: debug: send text file and file length is 1023.
+

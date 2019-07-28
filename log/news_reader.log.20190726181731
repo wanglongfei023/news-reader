@@ -1,0 +1,202 @@
+2019-07-26 18:17:31 [tid:0xe3eaf700] [file:thread_pool_manager.c] [func:thread_manager_func] [line:13]			
+information: debug: thread manager begin to work.
+
+2019-07-26 18:17:31 [tid:0xe3eaf700] [file:thread_pool_manager.c] [func:thread_manager_func] [line:65]			
+information: debug: Manager thread tid:0xe3eaf700	pthread_pool info:			
+ALIVE:10	BUSY:0	 LIE:10	 B/A:0.00%	 A/ALL:1.00%
+
+
+2019-07-26 18:17:31 [tid:0xe36ae700] [file:spider_operation.c] [func:analyze_url] [line:74]			
+information: debug:[1] analize url success.
+
+2019-07-26 18:17:31 [tid:0xe36ae700] [file:spider_operation.c] [func:create_connect_socket] [line:89]			
+information: debug: [2]create connetion socket success.
+
+2019-07-26 18:17:31 [tid:0xe36ae700] [file:spider_operation.c] [func:connect_web_server] [line:104]			
+information: debug: [3]connect webserver success.
+
+
+2019-07-26 18:17:31 [tid:0xe36ae700] [file:spider_operation.c] [func:create_request_head] [line:123]			
+information: debug: [4]create request head success.
+
+2019-07-26 18:17:31 [tid:0xe36ae700] [file:spider_operation.c] [func:send_request_head] [line:145]			
+information: debug: [5]send request head to webserver success.
+
+
+2019-07-26 18:17:31 [tid:0xe36ae700] [file:spider_operation.c] [func:get_web_response] [line:240]			
+information: debug: [6]Get resopnse sccess.
+
+2019-07-26 18:17:40 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:40 2019
+	client ip:222.171.151.228	accept All client num:1
+
+
+2019-07-26 18:17:41 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:41 2019
+	client ip:222.171.151.228	accept All client num:2
+
+
+2019-07-26 18:17:41 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:41 [tid:0xe5eb3700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:17:41 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:41 2019
+	client ip:222.171.151.228	accept All client num:3
+
+
+2019-07-26 18:17:41 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:41 [tid:0xe56b2700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:17:48 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:48 2019
+	client ip:222.171.151.228	accept All client num:4
+
+
+2019-07-26 18:17:48 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:48 2019
+	client ip:222.171.151.228	accept All client num:5
+
+
+2019-07-26 18:17:48 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:48 2019
+	client ip:222.171.151.228	accept All client num:6
+
+
+2019-07-26 18:17:48 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:48 [tid:0xe4eb1700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:17:48 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:48 [tid:0xe66b4700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:58 2019
+	client ip:222.171.151.228	accept All client num:7
+
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:58 2019
+	client ip:222.171.151.228	accept All client num:8
+
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:17:58 2019
+	client ip:222.171.151.228	accept All client num:9
+
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:58 [tid:0xe46b0700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:58 [tid:0xe6eb5700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:17:58 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:25 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:25 2019
+	client ip:222.171.151.228	accept All client num:9
+
+
+2019-07-26 18:18:25 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:25 2019
+	client ip:222.171.151.228	accept All client num:10
+
+
+2019-07-26 18:18:25 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:25 [tid:0xe86b8700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:18:25 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:25 2019
+	client ip:222.171.151.228	accept All client num:11
+
+
+2019-07-26 18:18:25 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:25 [tid:0xe8eb9700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:18:32 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:32 2019
+	client ip:222.171.151.228	accept All client num:12
+
+
+2019-07-26 18:18:32 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:32 2019
+	client ip:222.171.151.228	accept All client num:13
+
+
+2019-07-26 18:18:32 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:32 2019
+	client ip:222.171.151.228	accept All client num:14
+
+
+2019-07-26 18:18:32 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:32 [tid:0xe5eb3700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:18:32 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:32 [tid:0xe56b2700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:35 2019
+	client ip:222.171.151.228	accept All client num:15
+
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:35 2019
+	client ip:222.171.151.228	accept All client num:16
+
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:server_socket_operation.c] [func:accept_client] [line:43]			
+information: debug: time:Fri Jul 26 18:18:35 2019
+	client ip:222.171.151.228	accept All client num:17
+
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:35 [tid:0xe4eb1700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:35 [tid:0xe66b4700] [file:gave_client_up_date.c] [func:gave_client_up_date] [line:10]			
+information: debug: deal request of updating for client.
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+
+2019-07-26 18:18:35 [tid:0xe9f6b700] [file:thread_pool.c] [func:thread_task_add] [line:124]			
+information: debug: add a task success.
+

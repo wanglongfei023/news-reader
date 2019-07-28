@@ -1,0 +1,3 @@
+2019-07-27 13:30:41 [tid:0x291d1700] [file:server_socket_operation.c] [func:create_socket] [line:20]			
+information: failed to create socket.
+
