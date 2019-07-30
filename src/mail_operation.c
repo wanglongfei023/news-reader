@@ -7,15 +7,13 @@
 *
 ==========================================================================*/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include <news_reader.h>
 
 void send_mail(const char* pMailAddress, const char* pTheme, const char* pInfo)
 {
 	char szCmd[512] = {0};
 	sprintf(szCmd, "echo '%s' | mail -s \"%s\" %s >> mail.log", pInfo, pTheme, pMailAddress);
-	printf("%s\n", szCmd);
+	//printf("%s\n", szCmd);
 	system(szCmd);
 }
 
@@ -24,8 +22,8 @@ void send_varify_code(const char* pMailAddress, const char* pCode)
 	char szInfo[128] = {0};
 	sprintf(
 			szInfo, 
-			"    From news-reader:  Your verification code is %s.\
-			 \nIf it is not your own operation, please ignore this information. ",
+			"from news-reader:  Your verification code is %s.\
+			 \nif it is not your own operation, please ignore this information. ",
 			 pCode
 		   );
 	send_mail(pMailAddress,"The Verification Code",  szInfo);

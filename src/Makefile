@@ -4,7 +4,7 @@ CC=gcc
 INCLUDE=-I../include
 CFLAGS=-c -g -Wall $(INCLUDE)
 CPPFLAGS=-E-
-DLDFLAGS=-lpthread -lssl -lcrypto
+DLDFLAGS=-lpthread -lssl -lcrypto -lmysqlclient
 TARGET=app
 RM=-rm -rf
 

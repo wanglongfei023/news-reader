@@ -12,7 +12,7 @@
 void* update_all_news(void* arg)
 {	
 	url_t u; 
-	net_data_t* date = (net_data_t*)arg; 
+	net_data_t* pNetData = (net_data_t*)arg; 
 	net_data_t* pReqNetData = NULL; 
 
 	if(arg != NULL)
@@ -27,11 +27,10 @@ void* update_all_news(void* arg)
 	if(arg != NULL)
 	{
 		pReqNetData->nPackType = _UPDATE_ALL_NEWS; 
-		pReqNetData->clifd = date->clifd; 
-		pReqNetData->buflen = date->buflen; 
-		strcpy(pReqNetData->url, date->url); 
+		pReqNetData->clifd = pNetData->clifd; 
+		pReqNetData->nBuffLen = pNetData->nBuffLen; 
+		strcpy(pReqNetData->url, pNetData->url); 
 		strcpy(u.url, pReqNetData->url); 
-		printf("client url:%s\n", u.url); 
 		strcpy(u.szFilePath, szPageFileName); 
 	}else{
 		strcpy(u.url, "http://www.people.com.cn"); 

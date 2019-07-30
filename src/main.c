@@ -76,11 +76,12 @@ int main()
 						continue; 
 					}
 				}else if(ep_even[i].events == EPOLLIN){
-					net_data_t netData; 
-					int read_num = read(ep_even[i].data.fd, &netData, sizeof(net_data_t)); 
+					//net_data_t RecvNetData; 
+					char szRecvBuff[BUFF_SIZE] = {0};
+					int read_num = read(ep_even[i].data.fd, &szRecvBuff, BUFF_SIZE); 
 					while(read_num < 0 && errno == EINTR)
 					{	
-						read_num = read(ep_even[i].data.fd, &netData, sizeof(net_data_t)); 
+						read_num = read(ep_even[i].data.fd, &szRecvBuff, BUFF_SIZE); 
 					}
 
 					if(read_num == 0 || read_num < 0)
@@ -92,8 +93,8 @@ int main()
 						continue; 
 					}
 
-					netData.clifd = ep_even[i].data.fd; 
-					handle_request(pGlobalPool, &netData); 	
+					//szRecvBuff.clifd = ep_even[i].data.fd; 
+					handle_request(ep_even[i].data.fd, szRecvBuff); 	
 				}
 			}
 		}

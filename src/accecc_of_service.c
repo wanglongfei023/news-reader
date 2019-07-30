@@ -9,35 +9,74 @@
 
 #include<news_reader.h>
 
-int handle_request(pool_t* pPool, net_data_t* pNetData)
+int handle_request(int nClientFd, char* pRecvBuff)
 {
-	net_data_t clientData = *pNetData; 
-	switch(clientData.nPackType)
+	PackType* pPackType = (PackType*)pRecvBuff; 
+	switch(*pPackType)
 	{
-		
+		case MAIL_VARIFY_REQ:
+			{
+				mail_varify_req* pVarifyReq = (mail_varify_req*)pRecvBuff;
+				pVarifyReq->nClientFd = nClientFd;
+				thread_task_add(pGlobalPool, deal_varify_code_request, (void*)pVarifyReq); 
+				break;
+			}		
+
+		case REGISTER_REQ:
+			{
+				register_req* pRegisterReq = (register_req*)pRecvBuff;
+				pRegisterReq->nClientFd = nClientFd;
+				thread_task_add(pGlobalPool, deal_register_request, (void*)pRegisterReq); 
+				break;
+			}
+
 		case _UPDATE_ALL_NEWS:
-			thread_task_add(pPool, update_all_news, (void*)&clientData); 
-			break; 
+			{
+				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
+				pRecvNetData->clifd = nClientFd;
+				thread_task_add(pGlobalPool, update_all_news, (void*)pRecvNetData); 
+				break; 
+			}
 
 		case _CURRENT_NEWS_REQUEST:
-			thread_task_add(pPool, push_client_current_news, (void*)&clientData); 
-			break; 
+			{
+				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
+				pRecvNetData->clifd = nClientFd;
+				thread_task_add(pGlobalPool, push_client_current_news, (void*)pRecvNetData); 
+				break; 
+			}
 
 		case _SEARCH_ONE_NEWS_REQUEST:
-			thread_task_add(pPool, search_news_for_client, (void*)&clientData); 
-			break; 
+			{
+				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
+				pRecvNetData->clifd = nClientFd;
+				thread_task_add(pGlobalPool, search_news_for_client, (void*)pRecvNetData); 
+				break; 
+			}
 
 		case _SEARCH_OLD_NEWS_REQUEST:
-			thread_task_add(pPool, search_old_news, (void*)&clientData); 
-			break; 
+			{
+				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
+				pRecvNetData->clifd = nClientFd;
+				thread_task_add(pGlobalPool, search_old_news, (void*)pRecvNetData); 
+				break; 
+			}
 
 		case _VIDEO_NEWS_REQUEST:
-			thread_task_add(pPool, deal_video_request, (void*)&clientData); 
-			break; 
+			{
+				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
+				pRecvNetData->clifd = nClientFd;
+				thread_task_add(pGlobalPool, deal_video_request, (void*)pRecvNetData); 
+				break; 
+			}
 
 		case _PICTURE_NEWS_REQUEST:
-			thread_task_add(pPool, deal_picture_request, (void*)&clientData); 
-			break; 
+			{
+				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
+				pRecvNetData->clifd = nClientFd;
+				thread_task_add(pGlobalPool, deal_picture_request, (void*)pRecvNetData); 
+				break; 
+			}
 
 		default:
 			break; 

@@ -68,7 +68,7 @@ int analyze_url(url_t* u, int nReqType)
 	j = 0; 
 	for(
 		i = starlen + strlen(u->domain); 
-		nReqType == _SEARCH_ONE_NEWS_REQUEST && i<(strlen(u->url)-size); 
+		nReqType == _SEARCH_ONE_NEWS_REQUEST && i < (strlen(u->url) - size); 
 		i++
 		)
 	{

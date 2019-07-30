@@ -29,6 +29,7 @@
 #include<signal.h>
 #include<netinet/in.h>
 #include <stdarg.h>
+#include <mysql/mysql.h>
 
 //#define SERVER_IP "192.168.43.2"
 #define SERVER_IP 		"0.0.0.0"
@@ -40,12 +41,21 @@
 #define HASH_LEN 		1000
 #define TIMEOUT 		3600
 
+#define FILE_NAME_LEN	64
+#define SQL_LEN 		256
+#define MAIL_LEN	 	64
+#define USER_NAME_LEN	32
+#define PASSWD_LEN	 	32
+#define VARIFY_CODE_LEN	5
+
+//可读性宏定义
 #define TRUE			1
 #define FALSE			0
 
 #define SUCCESS 		1
 #define FAILED 			0
 
+//客户端数据请求相关协议
 #define _CURRENT_NEWS_REQUEST 			2
 #define _SEARCH_ONE_NEWS_REQUEST 		3
 #define _SEARCH_OLD_NEWS_REQUEST 		4
@@ -53,18 +63,93 @@
 #define _PICTURE_NEWS_REQUEST 			6
 #define _UPDATE_ALL_NEWS 				159
 
+//客户端登陆注册相关协议
+#define MAIL_VARIFY_REQ					7
+#define MAIL_VARIFY_RES					8
+#define REGISTER_REQ					9
+#define REGISTER_RES					10
+#define LOG_IN_REQ						11
+#define LOG_IN_RES						12
 
+
+//检查登陆信息结果
+#define _passwd_right 		0
+#define _passwd_wrong 		1
+#define _user_not_exist		2
+#define _user_exist			3	
+#define _register_success	4	
+
+//数据库表
+#define _check_user_table	"check_user_t"
+
+//日志调用
 #define LOG(...) write_log(__FILE__,  __func__,  __LINE__,  __VA_ARGS__)
 
+//定义全局变量
 FILE* pLogFileHandler; 
 time_t pGlobalTimeFile; 
 struct tm* tm_finame; 
-char pGblCurTextFile[50]; 
-char pGblCurJpgFile[50]; 
-char pGblCurVedioFile[50]; 
-char szGlbTodayTime[50]; 
+char pGblCurTextFile[FILE_NAME_LEN]; 
+char pGblCurJpgFile[FILE_NAME_LEN]; 
+char pGblCurVedioFile[FILE_NAME_LEN]; 
+char szGlbTodayTime[FILE_NAME_LEN]; 
+
+//定义协议包标识的数据类型
+typedef int PackType;
+
+//定义登陆注册相关协议包
+typedef struct
+{
+	char szMail[MAIL_LEN];
+	char szName[USER_NAME_LEN];
+	int nAge;
+}user_info;
+
+typedef struct 
+{
+	PackType nType;
+	char szMail[MAIL_LEN];
+	int nClientFd;
+}mail_varify_req;
+
+typedef struct 
+{
+	PackType nType;
+	char szCode[VARIFY_CODE_LEN];
+}mail_varify_res;
+
+typedef struct 
+{
+	PackType nType;
+	char szMail[MAIL_LEN];
+	char szName[USER_NAME_LEN];
+	char szPasswd[PASSWD_LEN];
+	int nClientFd;
+}register_req;
+
+typedef struct 
+{
+	PackType nType;
+	int nResult;
+}register_res;
+
+typedef struct
+{
+	PackType nType;
+	char szMail[MAIL_LEN];
+	char szPasswd[PASSWD_LEN];
+	int nClientFd;
+}log_in_req;
+
+typedef struct
+{
+	PackType nType;
+	int nResult;
+	user_info uInfo;	
+}log_in_res;
 
 
+//任务结构体
 typedef struct
 {
 	void* (*job)(void*); 
@@ -94,16 +179,14 @@ typedef struct
 
 }pool_t; 
 
-
 typedef struct  			//通信所用结构体
 {
+	PackType nPackType; 
 	char buf[300]; 
 	char url[300]; 
-	int buflen; 
-	int nPackType; 
+	int nBuffLen; 
 	int clifd; 
 }net_data_t; 
-
 
 typedef struct 				 //服务器链接所需参数
 {
@@ -156,9 +239,6 @@ hash_t** pGlobalHashTable;  //去重所用哈西结构指针
 
 
 
-int init_log(const char*);											//初始化日志文件 
-int write_log(const char*,  const char*,  int,  const char*,  ...); //打印日志
-void drop_log(); 													//删除日志句柄
 int create_socket(const char* ip, short host);   				    //初始化socket并进行绑定
 int add_socket(int epfd, int fd);   						        //epoll的添加
 int delete_socket(int epfd, int fd);   							    //epoll的删除
@@ -181,7 +261,7 @@ int regular_match(regex_t* recom, regmatch_t* regch, char* string,
 		          int n, FILE* filefd, int Renum);  				//服务器解析收到的包
 int send_text_file(net_data_t* date, FILE* filefd);  				//向客户端发送文本文件
 int send_binary_file(net_data_t*, FILE*); 							//发送二进制文件
-int handle_request(pool_t*, net_data_t*);   						//请求处理入口
+int handle_request(int, char*);										//请求处理入口
 void* update_all_news(void*); 										//为系统文件更新信息
 void* search_old_news(void*); 										//为客户端搜索历史新闻
 void* push_client_current_news(void*);								//给客户端发送信息
@@ -194,4 +274,16 @@ int hash_push(hash_t**, char* url, char* szFilePath, time_t); 		//1为添加成�
 char* split_string(char* string, char* buf, int* nlen); 			//读取文件数据加载到哈西表中
 int collect_string_into_hash(hash_t**, int, int); 					//读取文件数据加载到哈西表中
 void* thread_time_update_func(void*); 								//定时更新文件数据
+int init_log(const char*);											//初始化日志文件 
+int write_log(const char*,  const char*,  int,  const char*,  ...); //打印日志
+void drop_log(); 													//删除日志句柄
+MYSQL* connect_database(const char*, const char*, const char*, const char*); //连接数据库
+int check_user_info(MYSQL*, const char*, const char*);				//检查用户登陆信息
+int insert_user(MYSQL*, const char*, const char*, const char*);		//插入用户
+int delete_user(MYSQL*, const char*);								//删除用户
+void send_mail(const char*, const char*, const char*); 				//发送邮箱信息接口	
+void send_varify_code(const char*, const char*);					//发送验证码
+void mail_notify(const char*);										//邮箱通知（3955qq邮箱）
+void* deal_varify_code_request(void*);								//验证码请求
+void* deal_register_request(void*);									//处理用户注册请求
 

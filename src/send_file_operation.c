@@ -24,7 +24,7 @@ int send_text_file(net_data_t* pNetData, FILE* pFileHandler)
 	{
 		fseek(pFileHandler, 0, SEEK_END); 
 		nFileLen = ftell(pFileHandler); 
-		netData.buflen = nFileLen; 
+		netData.nBuffLen = nFileLen; 
 		LOG("send num:%d", nFileLen); 
 		write(netData.clifd, &netData, sizeof(netData)); 
 		nWriteNum = 0; 
@@ -66,7 +66,7 @@ int send_binary_file(net_data_t* pNetData, FILE* pFileHandler)
 	memset(donedate.buf, '\0', sizeof(donedate.buf)); 
 	memset(donedate.url, '\0', sizeof(donedate.url)); 
 	donedate.nPackType = 0; 
-	donedate.buflen = 0; 
+	donedate.nBuffLen = 0; 
 	donedate.clifd = -1; 
 	
 	bzero(buf, sizeof(buf)); 
@@ -75,7 +75,7 @@ int send_binary_file(net_data_t* pNetData, FILE* pFileHandler)
 	fseek(pFileHandler, 0, SEEK_END); 
 	nFileLen = ftell(pFileHandler); 
 	fseek(pFileHandler, 0, SEEK_SET); 
-	netData.buflen = nFileLen; 
+	netData.nBuffLen = nFileLen; 
 	
 	nWriteNum = 0; 
 	nDataLen = 0; 
@@ -93,7 +93,7 @@ int send_binary_file(net_data_t* pNetData, FILE* pFileHandler)
 	{
 		while(nWriteNum < nReadNum)
 		{
-				nWriteNum = write(netData.clifd, buf+nDataLen, nReadNum-nDataLen); 
+				nWriteNum = write(netData.clifd, buf +nDataLen, nReadNum-nDataLen); 
 				nDataLen = nWriteNum+nDataLen; 
 				nSendNum = nDataLen+nSendNum; 
 		}

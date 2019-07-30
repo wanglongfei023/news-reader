@@ -20,6 +20,7 @@ void* search_news_for_client(void* arg)
 	pReqNetData->nPackType = _SEARCH_ONE_NEWS_REQUEST; 
 	FILE* pFileHandler = NULL; 
 	char head[4096] = {0}; 
+	printf("\n\n\n\nurl:%s\n\n\n", pReqNetData->url);
 
 	if(analyze_url(&u, _SEARCH_ONE_NEWS_REQUEST) == -1)
 		return NULL; 

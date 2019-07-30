@@ -69,7 +69,7 @@ void* deal_picture_request(void* arg)
 	requestNetData.nPackType = _PICTURE_NEWS_REQUEST; 
 	responseNetData.nPackType = 0; 
 	strcpy(responseNetData.buf, "没有数据"); 
-	responseNetData.buflen = strlen(responseNetData.buf); 
+	responseNetData.nBuffLen = strlen(responseNetData.buf); 
 	
 	LOG("debug: update picture for client.");
 
@@ -193,7 +193,7 @@ void* search_old_news(void* arg)
 	if(pFileHandler == NULL)
 	{
 		strcpy(reqNetData.buf, "FULL"); 
-		reqNetData.buflen = strlen(reqNetData.buf); 
+		reqNetData.nBuffLen = strlen(reqNetData.buf); 
 		strcpy(reqNetData.url, "FULL"); 
 		reqNetData.nPackType = FAILED; 
 		send_text_file(&reqNetData, NULL); 
@@ -212,7 +212,7 @@ void* search_old_news(void* arg)
 	if(pFileHandler == NULL)
 	{
 		strcpy(reqNetData.buf, "FULL"); 
-		reqNetData.buflen = strlen(reqNetData.buf); 
+		reqNetData.nBuffLen = strlen(reqNetData.buf); 
 		strcpy(reqNetData.url, "FULL"); 
 		reqNetData.nPackType = 0; 
 		send_text_file(&reqNetData, NULL); 
@@ -231,7 +231,7 @@ void* search_old_news(void* arg)
 	if(pFileHandler == NULL)
 	{
 		strcpy(reqNetData.buf, "FULL"); 
-		reqNetData.buflen = strlen(reqNetData.buf); 
+		reqNetData.nBuffLen = strlen(reqNetData.buf); 
 		strcpy(reqNetData.url, "FULL"); 
 		reqNetData.nPackType = 0; 
 		send_text_file(&reqNetData, NULL); 
