@@ -9,6 +9,7 @@
 
 #include <news_reader.h>
 
+
 MYSQL* connect_database(const char* pHost, const char* pUser, const char* pPasswd, const char* pDB)
 {
 	MYSQL* pMysqlHander;
@@ -66,18 +67,50 @@ int check_user_info(MYSQL* pSQLHandler, const char* pID, const char* pPasswd)
 int insert_user(MYSQL* pSQLHandler, const char* pID, const char* pName, const char* pPasswd)
 {
 	char szSQL[SQL_LEN] = {0};
-	sprintf(szSQL, "insert ignore into %s values('%s','%s','%s')", _check_user_table, pID, pName, pPasswd);
+
+	sprintf(
+			szSQL, 
+			"insert ignore into %s values('%s','%s','%s', 0)", 
+			_check_user_table, 
+			pID, 
+			pName, 
+			pPasswd
+		   );
+
 	if(mysql_query(pSQLHandler, szSQL))
 	{
 		printf(
-				"warning: fail to insert a user. err_msg: user id:%s user name:%s password:%s",
-				pID,
-				pName,
-				pPasswd
-			   );
+			"warning: fail to insert a user. err_msg: user id:%s user name:%s password:%s",
+			pID,
+			pName,
+			pPasswd
+		   );
 		mysql_close(pSQLHandler);
 		return -1;
 	}
+
+	sprintf(
+			szSQL, 
+			"insert ignore into %s(c_mail, u_name) values('%s','%s')", 
+			_user_info_table, 
+			pID, 
+			pName 
+		   );
+
+	if(mysql_query(pSQLHandler, szSQL))
+	{
+		printf(
+			"warning: fail to insert a user. err_msg: user id:%s user name:%s",
+			pID,
+			pName
+		   );
+		mysql_close(pSQLHandler);
+		return -1;
+	}
+
+	bzero(szSQL, sizeof(szSQL));
+
+
 	printf("%s", "insert success.");
 	return 1;
 }
@@ -99,10 +132,9 @@ int delete_user(MYSQL* pSQLHandler, const char* pID)
 int main(int argc,char** argv)
 {
 	MYSQL* pSQLHandler = connect_database("localhost", "root", "", "news_reader");
-	//insert_user(pSQLHandler, "395592722@qq.co", "wanglongfei", "123456");
+	insert_user(pSQLHandler, "395592722@qq.co", "wanglongfei", "123456");
 	check_user_info(pSQLHandler, "395592722@qq.co", "123456");
-	delete_user(pSQLHandler, "395592722@qq.co");
+	//delete_user(pSQLHandler, "395592722@qq.co");
 	return 0;
 }
-
 */

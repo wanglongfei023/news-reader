@@ -30,6 +30,14 @@ int handle_request(int nClientFd, char* pRecvBuff)
 				break;
 			}
 
+		case LOG_IN_REQ:
+			{
+				log_in_req* pLoginReq = (log_in_req*)pRecvBuff;
+				pLoginReq->nClientFd = nClientFd;
+				thread_task_add(pGlobalPool, deal_login_request, (void*)pLoginReq);
+				break;
+			}
+
 		case _UPDATE_ALL_NEWS:
 			{
 				net_data_t* pRecvNetData = (net_data_t*)pRecvBuff;
