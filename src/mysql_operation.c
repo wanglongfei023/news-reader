@@ -16,7 +16,7 @@ MYSQL* connect_database(const char* pHost, const char* pUser, const char* pPassw
 	pMysqlHander = mysql_init(NULL);
 	if(!mysql_real_connect(pMysqlHander, pHost, pUser, pPasswd, pDB, 0, NULL, 0))
 	{
-		printf("warning: fail to connect the database. \
+		LOG("warning: fail to connect the database. \
 				\nerr_msg: host name:%s user:%s password:%s database:%s",
 				pHost,
 				pUser,
@@ -37,9 +37,8 @@ int check_user_info(MYSQL* pSQLHandler, const char* pID, const char* pPasswd)
 
 	if(mysql_query(pSQLHandler, szSQL))
 	{
-		printf("warning: select error with wrong sql `%s`", szSQL);
-		mysql_close(pSQLHandler);
-		return -1;
+		LOG("warning: check user info error with wrong sql `%s`\n", szSQL);
+		return _sql_exec_error;
 	}
 
 	pRes = mysql_use_result(pSQLHandler);
@@ -47,20 +46,25 @@ int check_user_info(MYSQL* pSQLHandler, const char* pID, const char* pPasswd)
 	
 	if(row == NULL)
 	{
-		printf("notice: user log in failed and id is not exist.[id: %s]", pID);
+		LOG("notice: user's mail is not exist.[id: %s]", pID);
 		return _user_not_exist;
 	}
 
 	if(strcmp(row[0], pPasswd) != 0)
 	{
-		printf("notice: user log in failed.[id: %s] [password: %s]\n", pID, pPasswd);
+		LOG(
+			"notice: user password is wrong.[id: %s] [wrong passwd: %s][right passed:%s]\n", 
+			pID, 
+			pPasswd,
+			row[0]
+			);
 		return _passwd_wrong;
 	}
-	printf("notice: user log in success.[id: %s] [password: %s]", pID, pPasswd);	
+
+	LOG("notice: user log in success.[id: %s] [password: %s]", pID, pPasswd);	
 	return _passwd_right;
 
 	mysql_free_result(pRes);
-	//mysql_close(pSQLHandler);
 	
 }
 
@@ -79,14 +83,13 @@ int insert_user(MYSQL* pSQLHandler, const char* pID, const char* pName, const ch
 
 	if(mysql_query(pSQLHandler, szSQL))
 	{
-		printf(
+		LOG(
 			"warning: fail to insert a user. err_msg: user id:%s user name:%s password:%s",
 			pID,
 			pName,
 			pPasswd
 		   );
-		mysql_close(pSQLHandler);
-		return -1;
+		return _sql_exec_error;
 	}
 
 	sprintf(
@@ -99,21 +102,68 @@ int insert_user(MYSQL* pSQLHandler, const char* pID, const char* pName, const ch
 
 	if(mysql_query(pSQLHandler, szSQL))
 	{
-		printf(
+		LOG(
 			"warning: fail to insert a user. err_msg: user id:%s user name:%s",
 			pID,
 			pName
 		   );
-		mysql_close(pSQLHandler);
-		return -1;
+		return _insert_error;
 	}
 
 	bzero(szSQL, sizeof(szSQL));
 
 
-	printf("%s", "insert success.");
-	return 1;
+	LOG("%s", "insert success.");
+	return _insert_success;
 }
+
+int get_user_info(MYSQL* pSQLHandler, const char* pID, user_info* pUserInfo)
+{
+	MYSQL_RES* pRes;
+	MYSQL_ROW row;
+	char szSQL[SQL_LEN] = {0};
+	sprintf(szSQL, "select * from %s where c_mail='%s'", _user_info_table, pID);
+
+	if(mysql_query(pSQLHandler, szSQL))
+	{
+		LOG("warning: select error with wrong sql `%s`\n", szSQL);
+		return _sql_exec_error;
+	}
+
+	pRes = mysql_use_result(pSQLHandler);
+	row = mysql_fetch_row(pRes);
+	
+	if(row == NULL)
+	{
+		return _user_not_exist;
+	}
+
+	if(row[1] != NULL)
+		strcpy(pUserInfo->szMail, row[1]);
+
+	if(row[2] != NULL)
+		strcpy(pUserInfo->szName, row[2]);
+
+	pUserInfo->nSex = row[3] == NULL ? -1 : atoi(row[3]);
+
+	pUserInfo->nAge = row[4] == NULL ? -1 : atoi(row[4]);
+
+	if(row[5] != NULL)
+		strcpy(pUserInfo->szPhoto, row[5]);
+
+	if(row[6] != NULL)
+		strcpy(pUserInfo->szArea, row[6]);
+
+	if(row[7] != NULL)
+		strcpy(pUserInfo->szTag, row[7]);
+
+	pUserInfo->nMember = atoi(row[8]);
+
+	return _get_info_success;
+	mysql_free_result(pRes);
+
+}
+
 
 int delete_user(MYSQL* pSQLHandler, const char* pID)
 {
@@ -121,11 +171,10 @@ int delete_user(MYSQL* pSQLHandler, const char* pID)
 	sprintf(szSQL, "delete from %s where c_mail='%s'", _check_user_table, pID);
 	if(mysql_query(pSQLHandler, szSQL))
 	{
-		printf("warning: fail to delete a user. err_msg: `sql`:%s\n", szSQL);
-		mysql_close(pSQLHandler);
-		return -1;
+		LOG("warning: fail to delete a user. err_msg: `sql`:%s\n", szSQL);
+		return _sql_exec_error;
 	}
-	return 1;
+	return TRUE;
 }
 
 /*

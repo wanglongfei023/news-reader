@@ -29,5 +29,10 @@ void* deal_register_request(void* arg)
 		write(pRegisterReq->nClientFd, pRegisterRes, sizeof(register_res));
 	}
 
+	//内存释放
+	mysql_close(pSQLHandler);
+	free(pRegisterRes);
+	pRegisterRes = NULL;
+
 	return NULL;
 }

@@ -33,7 +33,7 @@
 
 //#define SERVER_IP "192.168.43.2"
 #define SERVER_IP 		"0.0.0.0"
-#define SERVER_PORT 	8086
+#define SERVER_PORT 	8000
 #define EPOLL_MAX  		1000
 #define LISTEN_NUM		128
 #define BUFF_SIZE 	 	1024
@@ -47,6 +47,9 @@
 #define USER_NAME_LEN	32
 #define PASSWD_LEN	 	32
 #define VARIFY_CODE_LEN	5
+#define PHOTO_LEN		64
+#define AREA_LEN		16
+#define	TAG_LEN			255
 
 //可读性宏定义
 #define TRUE			1
@@ -73,6 +76,11 @@
 
 
 //检查登陆信息结果
+#define _get_info_success	-2
+#define _sql_exec_error		-3
+#define _insert_error		-4
+#define _insert_success		-5
+
 #define _passwd_right 		0
 #define _passwd_wrong 		1
 #define _user_not_exist		2
@@ -98,14 +106,20 @@ char szGlbTodayTime[FILE_NAME_LEN];
 //定义协议包标识的数据类型
 typedef int PackType;
 
-//定义登陆注册相关协议包
 typedef struct
 {
 	char szMail[MAIL_LEN];
 	char szName[USER_NAME_LEN];
-	int nAge;
+	int nSex;			//性别：-1未知 0女 1男
+	int nAge;			//年龄：-1未知 
+	char szPhoto[64];	//照片在服务器的路径
+	char szArea[16];	//地区
+	char szTag[255];	//爱好标签
+	int nMember;		//是否是会员
+	
 }user_info;
 
+//定义登陆注册相关协议包
 typedef struct 
 {
 	PackType nType;
@@ -145,7 +159,7 @@ typedef struct
 typedef struct
 {
 	PackType nType;
-	int nResult;
+	int nResult; 	//_passwd_right _passwd_wrong _user_not_exist
 	user_info uInfo;	
 }log_in_res;
 
@@ -281,6 +295,7 @@ void drop_log(); 													//删除日志句柄
 MYSQL* connect_database(const char*, const char*, const char*, const char*); //连接数据库
 int check_user_info(MYSQL*, const char*, const char*);				//检查用户登陆信息
 int insert_user(MYSQL*, const char*, const char*, const char*);		//插入用户
+int get_user_info(MYSQL*, const char*, user_info*);					//获取用户资料
 int delete_user(MYSQL*, const char*);								//删除用户
 void send_mail(const char*, const char*, const char*); 				//发送邮箱信息接口	
 void send_varify_code(const char*, const char*);					//发送验证码

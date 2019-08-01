@@ -12,7 +12,7 @@
 void send_mail(const char* pMailAddress, const char* pTheme, const char* pInfo)
 {
 	char szCmd[512] = {0};
-	sprintf(szCmd, "echo '%s' | mail -s \"%s\" %s >> mail.log", pInfo, pTheme, pMailAddress);
+	sprintf(szCmd, "echo '%s' | mail -s \"%s\" %s >> ./log/mail.log", pInfo, pTheme, pMailAddress);
 	printf("%s\n", szCmd);
 	system(szCmd);
 }

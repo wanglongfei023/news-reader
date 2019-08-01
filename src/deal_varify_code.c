@@ -30,5 +30,9 @@ void* deal_varify_code_request(void* arg)
 	//回复给客户端
 	write(pVarifyReq->nClientFd, pVarifyRes, sizeof(mail_varify_res));
 
+	//内存释放
+	free(pVarifyRes);
+	pVarifyRes = NULL;
+
 	return NULL;
 }

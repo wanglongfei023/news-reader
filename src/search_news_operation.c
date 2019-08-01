@@ -12,7 +12,7 @@
 void* search_news_for_client(void* arg)
 {
 	net_data_t* pReqNetData = (net_data_t*)arg; 
-	char filename[64] = {0}; 
+	char szFileName[64] = {0}; 
 	
 	url_t u; 
 	strcpy(u.url, pReqNetData->url); 
@@ -25,8 +25,8 @@ void* search_news_for_client(void* arg)
 	if(analyze_url(&u, _SEARCH_ONE_NEWS_REQUEST) == -1)
 		return NULL; 
 
-	sprintf(filename, "Txt/%s", u.szFilePath); 
-	pFileHandler = fopen(filename, "rb"); 
+	sprintf(szFileName, "Txt/%s", u.szFilePath); 
+	pFileHandler = fopen(szFileName, "rb"); 
 
 	if(pFileHandler != NULL)
 	{
@@ -67,7 +67,7 @@ void* search_news_for_client(void* arg)
 	regcomp(&racom, "<title>\\([^<]\\+\\?\\)</title>\\?", REG_ICASE);   //获取标题
 	regcomp(&recom, "<p>\\([^<]\\+\\?\\)</p>\\?", REG_ICASE);           //获取内容
 	
-	pFileHandler = fopen(filename, "a+"); 
+	pFileHandler = fopen(szFileName, "a+"); 
 
 	int m = 0; 
 	int n = 0; 
@@ -101,7 +101,7 @@ void* search_news_for_client(void* arg)
 	}
 	
 	fclose(pFileHandler); 
-	pFileHandler = fopen(filename, "rb"); 	
+	pFileHandler = fopen(szFileName, "rb"); 	
 	send_text_file(pReqNetData, pFileHandler); 
 
 	regfree(&recom); 
