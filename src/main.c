@@ -19,6 +19,8 @@ int main()
 	init_log("./log/news_reader.log"); 
 
 	pGlobalPool = thread_pool_create(1000,  10,  1000); 
+	pGlobalSQLPool = sql_pool_create(10, "localhost", 3306, "news_reader", "root", "");
+
 	if(pGlobalPool == NULL)
 	{
 		LOG("create thread pool failed."); 
@@ -100,6 +102,7 @@ int main()
 		}
 	}
 	thread_pool_destory(pGlobalPool); 	
+	sql_pool_destroy(pGlobalSQLPool);
 	drop_log();
 
 	return 0; 

@@ -174,7 +174,6 @@ void* thread_worker_func(void* arg)
 
 	}
 	pthread_exit(NULL); 
-
 }
 
 

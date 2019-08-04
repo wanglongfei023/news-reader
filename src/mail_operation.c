@@ -8,13 +8,39 @@
 ==========================================================================*/
 
 #include <news_reader.h>
+char* pConfig[]={
+				   "-S from=183593190@qq.com\
+			   	 	-S smtp=smtps://smtp.qq.com\
+			     	-S smtp-auth-user=183593190@qq.com\
+			   		-S smtp-auth-password=hbgkpcyzlttkbiij\
+			   		-S smtp-auth=login",
+
+				   "-S from=395592722@qq.com\
+			   	 	-S smtp=smtps://smtp.qq.com\
+			     	-S smtp-auth-user=395592722@qq.com\
+			   		-S smtp-auth-password=xdnhsboithogbjbc\
+			   		-S smtp-auth=login"
+				 };	
+				   
 
 void send_mail(const char* pMailAddress, const char* pTheme, const char* pInfo)
 {
+	static int nConfigIndex = 0;
+
 	char szCmd[512] = {0};
-	sprintf(szCmd, "echo '%s' | mail -s \"%s\" %s >> ./log/mail.log", pInfo, pTheme, pMailAddress);
+	sprintf(
+			szCmd, 
+			"echo '%s' | mail -s \"%s\" %s %s>> ./log/mail.log", 
+			pInfo, 
+			pTheme, 
+			pConfig[nConfigIndex],
+			pMailAddress
+		   );
 	printf("%s\n", szCmd);
 	system(szCmd);
+
+	nConfigIndex++;
+	nConfigIndex %= sizeof(pConfig) / sizeof(char*);
 }
 
 void send_varify_code(const char* pMailAddress, const char* pCode)
@@ -22,7 +48,7 @@ void send_varify_code(const char* pMailAddress, const char* pCode)
 	
 	char szInfo[256] = {0};
 	
-	//获取当前时间来改变信息内容避免被163服务器列入垃圾名单
+	//获取当前时间来改变信息内容避免被SMTPP服务器列入垃圾名单
 	time_t tmpTime = time(NULL); 
 	struct tm* pFormatTime = localtime(&tmpTime); 
 
@@ -41,15 +67,15 @@ void send_varify_code(const char* pMailAddress, const char* pCode)
 		   );
 
 
-	//避免相同的标题被163邮件服务器列入垃圾邮件列表
-	const char* szThemes[8] = { 
-							"The Verification Code", "Verification Code Ensure",
-						    "YOUR VERIFICATION CODE", "ENSURE YOUR VERIFICATION",
-						    "NEWS-READER VARIFICATION", "LOOK FORWARD YOUR COMING",
-							"JOIN US -----NEWS-READER", "REGISTER'S VARIFCATION"
-						 };
+	//避免相同的标题被SMTP邮件服务器列入垃圾邮件列表
+	const char* szThemes[] = { 
+								"THE VERIFICATION CODE", "VERIFICATION CODE ENSURE",
+						    	"YOUR VERIFICATION CODE", "ENSURE YOUR VERIFICATION",
+						    	"NEWS-READER VARIFICATION", "LOOK FORWARD YOUR COMING",
+								"JOIN US -----NEWS-READER", "REGISTER'S VARIFCATION"
+							  };
 	srand(time(0));
-	int nIndex = rand() % 8;
+	int nIndex = rand() % (sizeof(szThemes) / sizeof(char*));
 	send_mail(pMailAddress, szThemes[nIndex],  szInfo);
 }
 
@@ -57,14 +83,14 @@ void mail_notify(const char* pInfo)
 {
 	const char* pMailAddress = "395592722@qq.com";
 
-	//避免相同的标题被163邮件服务器列入垃圾邮件列表
-	const char* szThemes[6] = { 
-							"notify from news-reader", "news-reader infomation",
-						    "YOUR SERVER INFORMATION", "FROM NEWS-READER NOTICE",
-						    "----MAYBE BUG IS COMING", "BE CARE OF NEWS-READER"
-						 };
+	//避免相同的标题被SMTP邮件服务器列入垃圾邮件列表
+	const char* szThemes[] = { 
+								"NOTICE FROM NEWSREADER", "NEWSREADER INFORMATION",
+						    	"YOUR SERVER INFORMATION", "FROM NEWS-READER NOTICE",
+						    	"----MAYBE BUG IS COMING", "BE CARE OF NEWS-READER"
+						 	  };
 	srand(time(0));
-	int nIndex = rand() % 6;
+	int nIndex = rand() % (sizeof(szThemes) / sizeof(char*));
 
 	send_mail(pMailAddress, szThemes[nIndex], pInfo);
 }

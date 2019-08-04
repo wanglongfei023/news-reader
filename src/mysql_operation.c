@@ -9,7 +9,7 @@
 
 #include <news_reader.h>
 
-
+/*
 MYSQL* connect_database(const char* pHost, const char* pUser, const char* pPasswd, const char* pDB)
 {
 	MYSQL* pMysqlHander;
@@ -27,6 +27,7 @@ MYSQL* connect_database(const char* pHost, const char* pUser, const char* pPassw
 	}
 	return pMysqlHander;
 }
+*/
 
 int check_user_info(MYSQL* pSQLHandler, const char* pID, const char* pPasswd)
 {

@@ -32,14 +32,15 @@
 #include <mysql/mysql.h>
 
 //#define SERVER_IP "192.168.43.2"
-#define SERVER_IP 		"0.0.0.0"
-#define SERVER_PORT 	8000
-#define EPOLL_MAX  		1000
-#define LISTEN_NUM		128
-#define BUFF_SIZE 	 	1024
-#define IP_SIZE  		16
-#define HASH_LEN 		1000
-#define TIMEOUT 		3600
+#define SERVER_IP 			"0.0.0.0"
+#define SERVER_PORT 		8086
+#define EPOLL_MAX  			1000
+#define LISTEN_NUM			128
+#define BUFF_SIZE 	 		1024
+#define IP_SIZE  			16
+#define HASH_LEN 			1000
+#define TIMEOUT 			3600
+#define SQL_POOL_NODE_NUM	20
 
 #define FILE_NAME_LEN	64
 #define SQL_LEN 		256
@@ -93,6 +94,14 @@
 
 //日志调用
 #define LOG(...) write_log(__FILE__,  __func__,  __LINE__,  __VA_ARGS__)
+
+
+//枚举
+typedef enum{
+		INCREASE, 
+		DECREASE
+}sqlNodeVary;
+
 
 //定义全局变量
 FILE* pLogFileHandler; 
@@ -194,6 +203,33 @@ typedef struct
 
 }pool_t; 
 
+/* 数据库连接节点 */
+typedef struct{
+	MYSQL            fd;                  //MYSQL对象文件描述符 
+	MYSQL*           pSQLHandler;       // 指向已经连接的MYSQL的句柄
+	pthread_mutex_t  lock;                // 互斥锁; 用在线程对数据的操作限制
+	int              used;                // 使用标志 
+	int              index;               // 下标 
+	enum{                                 // 连接状态 
+		DB_DISCONN, 
+		DB_CONN    
+	}sql_state;
+
+}sql_node_t;
+
+/* 数据库连接池 */
+typedef struct{
+	int        shutdown;                        //是否关闭 
+	sql_node_t sql_pool[SQL_POOL_NODE_NUM];     // 一堆连接
+	int        pool_number;                     //连接数量 
+	int        busy_number;                     // 被获取了的连接数量 
+	char       ip[IP_SIZE+1];                   // 数据库的ip 
+	int        port;                            // 数据库的port,一般是3306 
+	char       db_name[USER_NAME_LEN+1];        // 数据库的名字 
+	char       user[USER_NAME_LEN+1];           // 用户名 
+	char       passwd[PASSWD_LEN+1];            // 密码 
+}sql_conn_pool;
+
 typedef struct  			//通信所用结构体
 {
 	PackType nPackType; 
@@ -249,8 +285,9 @@ typedef struct delhash
 }hash_del; 
 
 
-pool_t* pGlobalPool;  		//线程池
-hash_t** pGlobalHashTable;  //去重所用哈西结构指针
+pool_t* pGlobalPool;  			//线程池
+hash_t** pGlobalHashTable;  	//去重所用哈西结构指针
+sql_conn_pool *pGlobalSQLPool;  //数据库连接池
 
 
 
@@ -292,6 +329,13 @@ void* thread_time_update_func(void*); 								//定时更新文件数据
 int init_log(const char*);											//初始化日志文件 
 int write_log(const char*,  const char*,  int,  const char*,  ...); //打印日志
 void drop_log(); 													//删除日志句柄
+sql_conn_pool *sql_pool_create(int min_num, char ip[], int port,
+		             char db_name[], char user[], char passwd[]);   //创建数据库连接池
+int create_db_connect(sql_conn_pool*, sql_node_t*);					//创建数据库连接节点
+void sql_pool_destroy(sql_conn_pool*);								//销毁数据库连接池
+sql_node_t *get_db_connect(sql_conn_pool*);							//从连接池取出一个连接
+void release_sql_node(sql_conn_pool*, sql_node_t*);					//归还数据库连接
+sql_conn_pool *sql_change_node(sql_conn_pool*, sqlNodeVary, int);	//增删数据库连接节点数
 MYSQL* connect_database(const char*, const char*, const char*, const char*); //连接数据库
 int check_user_info(MYSQL*, const char*, const char*);				//检查用户登陆信息
 int insert_user(MYSQL*, const char*, const char*, const char*);		//插入用户

@@ -19,39 +19,50 @@ void* deal_login_request(void* arg)
 	bzero(&pLoginRes->uInfo, sizeof(pLoginRes->uInfo));
 
 	//获取数据库句柄
-	MYSQL* pSQLHandler0 = connect_database("localhost", "root", "", "news_reader");
-	MYSQL* pSQLHandler1 = connect_database("localhost", "root", "", "news_reader");
+	//MYSQL* pSQLHandler0 = connect_database("localhost", "root", "", "news_reader");
+	//MYSQL* pSQLHandler1 = connect_database("localhost", "root", "", "news_reader");
+	sql_node_t *pSQLNode0  = get_db_connect(pGlobalSQLPool);
+	sql_node_t *pSQLNode1  = get_db_connect(pGlobalSQLPool);
+
+
 
 	//检查获取用户信息
-	if(get_user_info(pSQLHandler0, pLoginReq->szMail, &pLoginRes->uInfo) == _user_not_exist)
+	if(get_user_info(pSQLNode0->pSQLHandler, pLoginReq->szMail, &pLoginRes->uInfo) == _user_not_exist)
 	{
 		LOG(
 			"debug: user log in failed and user is not exist. [user mail: %s][return code: %d]", 
 			pLoginReq->szMail,
 			_user_not_exist
 		   );
+
 		pLoginRes->nResult = _user_not_exist;
-	}else if(check_user_info(pSQLHandler1, pLoginReq->szMail, pLoginReq->szPasswd) == _passwd_wrong){
+	}else if(check_user_info(pSQLNode1->pSQLHandler, pLoginReq->szMail, pLoginReq->szPasswd) == _passwd_wrong){
+
 		LOG(
 			"debug: user log in failed and user's password is wrong. [user mail: %s][return code: %d]", 
 			pLoginReq->szMail,
 			_passwd_wrong
 		   );
+
 		pLoginRes->nResult = _passwd_wrong;
 	}else{
+
 		LOG(
 			"debug: user log in success. [user mail: %s][return code: %d]", 
 			pLoginReq->szMail,
 			_passwd_right
 			);
+
 		pLoginRes->nResult = _passwd_right;
 	}
 		
 	write(pLoginReq->nClientFd, pLoginRes, sizeof(log_in_res));
 
 	//内存释放
-	mysql_close(pSQLHandler0);
-	mysql_close(pSQLHandler1);
+	//mysql_close(pSQLHandler0);
+	//mysql_close(pSQLHandler1);
+	release_sql_node(pGlobalSQLPool, pSQLNode0);	
+	release_sql_node(pGlobalSQLPool, pSQLNode1);	
 	free(pLoginRes);
 	//pLoginRes = NULL;
 
