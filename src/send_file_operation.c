@@ -11,6 +11,11 @@
 
 int send_text_file(net_data_t* pNetData, FILE* pFileHandler)
 {
+	if(pFileHandler == NULL)
+	{
+		LOG("warning: the text file handler is null so do nothing.");
+		return 0;
+	}
 	unsigned int nFileLen; 
 	unsigned char szBuff[4096]; 
 	int nWriteNum, nReadNum, nSendNum; 
@@ -59,6 +64,12 @@ int send_text_file(net_data_t* pNetData, FILE* pFileHandler)
 
 int send_binary_file(net_data_t* pNetData, FILE* pFileHandler)
 {
+	if(pFileHandler == NULL)
+	{
+		LOG("warning: the text file handler is null so do nothing.");
+		return 0;
+	}
+
 	unsigned char buf[4096]; 
 	int nFileLen, nSendNum, nReadNum, nDataLen; 
 	int nWriteNum; 

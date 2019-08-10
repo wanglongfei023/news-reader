@@ -79,7 +79,6 @@ void* update_all_news(void* arg)
 	int fd = open(u.szFilePath, O_RDWR); 
 	
 	int len = lseek(fd, 0, SEEK_END); 
-	printf("\nlen:%d\n", len); 
 	char* string = mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0); 
 	char* atem = string; 
 	char* ytem = string; 
@@ -196,50 +195,3 @@ void* update_all_news(void* arg)
 	return 0; 
 }
 
-
-void* thread_time_update_func(void* arg)
-{
-	int datefd = -1; 
-	while(TRUE)
-	{
-		time(&pGlobalTimeFile); 
-		tm_finame = localtime(&pGlobalTimeFile); 
-		memset(pGblCurTextFile, '\0', sizeof(pGblCurTextFile)); 
-		memset(pGblCurJpgFile, '\0', sizeof(pGblCurJpgFile)); 
-		memset(szGlbTodayTime, '\0', sizeof(szGlbTodayTime)); 
-
-		sprintf(
-				szGlbTodayTime, 
-				"%d%d%d", 
-				1900 + tm_finame->tm_year, 
-				tm_finame->tm_mon + 1, 
-				tm_finame->tm_mday
-				); 
-
-		sprintf(pGblCurTextFile, 
-				"Title/Txt%d%d%d.txt", 
-				1900 + tm_finame->tm_year, 
-				tm_finame->tm_mon + 1,
-			   	tm_finame->tm_mday
-				); 
-
-		sprintf(pGblCurJpgFile, 
-				"Title/Jpg%d%d%d.txt", 
-				1900 + tm_finame->tm_year, 
-				tm_finame->tm_mon + 1, 
-				tm_finame->tm_mday
-				); 
-
-		datefd = open(pGblCurTextFile, O_RDONLY); 
-		if(datefd == -1)
-		{
-			destroy_hash_table(pGlobalHashTable);   //哈西表销毁
-			update_all_news(NULL); 
-		}else{
-			close(datefd); 
-			datefd = -1; 
-			update_all_news(NULL); 
-		}
-		sleep(28800); 
-	}
-}

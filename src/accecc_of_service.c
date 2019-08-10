@@ -87,8 +87,7 @@ int handle_request(int nClientFd, char* pRecvBuff)
 			}
 
 		default:
-			break; 
+			return 0;
 	}
-
 	return 1; 
 }

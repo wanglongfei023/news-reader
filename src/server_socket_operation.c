@@ -22,6 +22,13 @@ int create_socket(const char* pIP, short nPort)
 
 	int fd = socket(AF_INET, SOCK_STREAM, 0); 
 
+	//设定断开连接后不进入2MSL状态
+	int on = 1;
+	if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0)
+	{
+		LOG("warning: fail to set socket as no double MSL.");
+	}
+
 	if(bind(fd, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1)
 	{
 		LOG("failed to create socket."); 
